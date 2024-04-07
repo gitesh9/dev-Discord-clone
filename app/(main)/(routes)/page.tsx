@@ -6,6 +6,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (<div>
+    Discord-Clone
     <UserButton afterSignOutUrl="/" />
     <ModeToggle />
     </div>
