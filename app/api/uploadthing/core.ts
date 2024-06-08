@@ -7,9 +7,8 @@ const handleAuth = () => {
 	const { userId } = auth();
 	if (!userId) throw new Error("Unauthorized");
 	return { userId: userId };
-}; // Fake auth function
+};
 
-// FileRouter for your app, can contain multiple FileRoutes
 export const ourFileRouter = {
 	serverImage: f({ image: { maxFileSize: "4MB", maxFileCount: 1 } })
 		.middleware(() => handleAuth())
