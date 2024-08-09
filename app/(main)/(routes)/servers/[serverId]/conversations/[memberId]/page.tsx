@@ -7,15 +7,19 @@ import { db } from "@/lib/db";
 import { ChatHeader } from "@/components/chat/chat-header";
 import { ChatMessages } from "@/components/chat/chat-messages";
 import { ChatInput } from "@/components/chat/chat-input";
+import { MediaRoom } from "@/components/media-room";
 
 interface MemberIdPage {
 	params: {
 		memberId: string;
 		serverId: string;
 	};
+	searchParams: {
+		video?: boolean;
+	};
 }
 
-const MemberIdPage = async ({ params }: MemberIdPage) => {
+const MemberIdPage = async ({ params, searchParams }: MemberIdPage) => {
 	const profile = await currentProfile();
 
 	if (!profile) {
@@ -57,27 +61,34 @@ const MemberIdPage = async ({ params }: MemberIdPage) => {
 				serverId={params.serverId}
 				type="conversation"
 			/>
-			<ChatMessages
-				name={otherMember.profile.name}
-				member={currentMember}
-				chatId={conversation.id}
-				apiUrl="/api/direct-messages"
-				socketUrl="/api/socket/direct-messages"
-				socketQuery={{
-					conversationId: conversation.id,
-				}}
-				paramKey="conversationId"
-				paramValue={conversation.id}
-				type="conversation"
-			/>
-			<ChatInput
-				apiUrl="/api/socket/direct-messages"
-				query={{
-					conversationId: conversation.id,
-				}}
-				name={otherMember.profile.name}
-				type="conversation"
-			/>
+			{searchParams.video && (
+				<MediaRoom chatId={conversation.id} video={true} audio={true} />
+			)}
+			{!searchParams.video && (
+				<>
+					<ChatMessages
+						name={otherMember.profile.name}
+						member={currentMember}
+						chatId={conversation.id}
+						apiUrl="/api/direct-messages"
+						socketUrl="/api/socket/direct-messages"
+						socketQuery={{
+							conversationId: conversation.id,
+						}}
+						paramKey="conversationId"
+						paramValue={conversation.id}
+						type="conversation"
+					/>
+					<ChatInput
+						apiUrl="/api/socket/direct-messages"
+						query={{
+							conversationId: conversation.id,
+						}}
+						name={otherMember.profile.name}
+						type="conversation"
+					/>
+				</>
+			)}
 		</div>
 	);
 };
