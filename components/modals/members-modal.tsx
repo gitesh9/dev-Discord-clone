@@ -127,7 +127,7 @@ export const MembersModal = () => {
 											<DropdownMenuTrigger>
 												<MoreVertical className="h-4 w-4 text-zinc-500" />
 											</DropdownMenuTrigger>
-											<DropdownMenuContent>
+											<DropdownMenuContent side="left">
 												<DropdownMenuSub>
 													<DropdownMenuSubTrigger className="flex items-center">
 														<ShieldQuestion className="w-4 h-4 mr-2" />
@@ -145,7 +145,7 @@ export const MembersModal = () => {
 															>
 																<Shield className="h-4 w-4 mr-2" />
 																Guest
-																{member.role ==
+																{member.role ===
 																	"GUEST" && (
 																	<Check className="h-4 w-4 ml-auto" />
 																)}
@@ -160,7 +160,7 @@ export const MembersModal = () => {
 															>
 																<Shield className="h-4 w-4 mr-2" />
 																Moderator
-																{member.role ==
+																{member.role ===
 																	"MODERATOR" && (
 																	<Check className="h-4 w-4 ml-auto" />
 																)}
