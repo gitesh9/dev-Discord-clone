@@ -37,12 +37,25 @@ const ServerIdPage = async ({ params }: ServerIdProps) => {
 		},
 	});
 
-	const initialChannel = server?.channels[0];
-	if (initialChannel?.name !== "general") {
+	let initialChannel = server?.channels?.[0];
+	if (!initialChannel) {
+		const anyChannel = await db.channel.findFirst({
+			where: {
+				serverId: params.serverId,
+			},
+			orderBy: {
+				createdAt: "asc",
+			},
+		});
+		initialChannel = anyChannel || undefined;
+	}
+
+	if (!initialChannel) {
 		return null;
 	}
+
 	return redirect(
-		`/servers/${params.serverId}/channels/${initialChannel?.id}`
+		`/servers/${params.serverId}/channels/${initialChannel.id}`
 	);
 };
 

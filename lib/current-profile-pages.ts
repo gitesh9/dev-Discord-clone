@@ -4,11 +4,26 @@ import { NextApiRequest } from "next";
 import { db } from "@/lib/db";
 
 export const currentProfilePages = async (req: NextApiRequest) => {
-	const { userId } = getAuth(req);
-	if (!userId) {
-		return null;
+	let userId: string | null = null;
+	try {
+		const authResult = getAuth(req);
+		userId = authResult?.userId || null;
+	} catch {
+		userId = null;
 	}
 
-	const profile = await db.profile.findUnique({ where: { userId } });
-	return profile;
+	if (!userId && req.cookies?.demo_user_id) {
+		userId = req.cookies.demo_user_id;
+	}
+
+	if (userId) {
+		const profile = await db.profile.findUnique({
+			where: {
+				userId,
+			},
+		});
+		if (profile) return profile;
+	}
+
+	return null;
 };

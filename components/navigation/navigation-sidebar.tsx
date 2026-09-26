@@ -9,6 +9,7 @@ import { db } from "@/lib/db";
 
 import { NavigationAction } from "./navigation-action";
 import { NavigationItem } from "./navigation-item";
+import { NavigationUserButton } from "./navigation-user-button";
 
 export const NavigationSidebar = async () => {
 	const profile = await currentProfile();
@@ -45,12 +46,10 @@ export const NavigationSidebar = async () => {
 			</ScrollArea>
 			<div className="pb-3 mt-auto flex items-center flex-col gap-y-4">
 				<ModeToggle />
-				<UserButton
-					afterSignOutUrl="/"
-					appearance={{
-						elements: { avatarBox: "h-[48px] w-[48px]" },
-					}}
-				></UserButton>
+				<NavigationUserButton
+					fallbackImageUrl={profile.imageUrl}
+					fallbackName={profile.name}
+				/>
 			</div>
 		</div>
 	);

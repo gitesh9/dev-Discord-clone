@@ -13,6 +13,7 @@ import { ServerSearch } from "./server-search";
 import { ServerSection } from "./server-section";
 import { ServerChannel } from "./server-channel";
 import { ServerMember } from "./server-member";
+import { ServerUserFooter } from "./server-user-footer";
 
 interface ServerSidebarProps {
 	serverId: string;
@@ -85,7 +86,7 @@ export const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
 	return (
 		<div className="flex flex-col h-full text-primary w-full dark:bg-[#2B2D31] bg-[#F2F3F5]">
 			<ServerHeader server={server} role={role} />
-			<ScrollArea className="flex-1 px-3">
+			<ScrollArea data-tour="channels-list" className="flex-1 px-3">
 				<div className="mt-2">
 					<ServerSearch
 						data={[
@@ -209,6 +210,7 @@ export const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
 					</div>
 				)}
 			</ScrollArea>
+			<ServerUserFooter profile={profile} role={role} />
 		</div>
 	);
 };

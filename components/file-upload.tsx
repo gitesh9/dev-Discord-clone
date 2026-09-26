@@ -14,21 +14,30 @@ interface FileUploadProps {
 }
 
 export const FileUpload = ({ onChange, value, endpoint }: FileUploadProps) => {
-	const fileType = value?.split(".").pop();
-	if (value && fileType !== "pdf") {
+	const isPdf = value?.toLowerCase().endsWith(".pdf") || value?.includes("application/pdf");
+	if (value && !isPdf) {
 		return (
 			<div className="relative h-20 w-20">
-				<Image fill src={value} alt="Upload" className="rounded-full" />
+				<Image
+					fill
+					src={value}
+					alt="Server Icon"
+					className="rounded-full object-cover"
+					unoptimized
+					referrerPolicy="no-referrer"
+				/>
 				<button
+					type="button"
 					onClick={() => onChange("")}
-					className="bg-rose-500 text-white p-1 rounded-full absolute top-0 right-0 shadow-sm"
+					className="bg-rose-500 hover:bg-rose-600 text-white p-1 rounded-full absolute top-0 right-0 shadow-md transition"
+					aria-label="Remove image"
 				>
-					<X className="h-4 w-4"></X>
+					<X className="h-4 w-4" />
 				</button>
 			</div>
 		);
 	}
-	if (value && fileType === "pdf") {
+	if (value && isPdf) {
 		return (
 			<div className="relative flex items-center p-2 mt-2 rounded-md bg-background/10">
 				<FileIcon className="h-10 w-10 fill-indigo-200 stroke-indigo-400" />

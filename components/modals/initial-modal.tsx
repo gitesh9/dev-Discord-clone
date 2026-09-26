@@ -27,6 +27,9 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { FileUpload } from "@/components/file-upload";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import { Sparkles } from "lucide-react";
+import { SERVER_PRESET_ICONS } from "@/lib/server-presets";
 
 const formSchema = z.object({
 	name: z.string().min(1, {
@@ -50,7 +53,7 @@ export const InitialModal = () => {
 		resolver: zodResolver(formSchema),
 		defaultValues: {
 			name: "",
-			imageUrl: "",
+			imageUrl: SERVER_PRESET_ICONS[0].url,
 		},
 	});
 
@@ -58,11 +61,13 @@ export const InitialModal = () => {
 
 	const onSubmit = async (values: z.infer<typeof formSchema>) => {
 		try {
-			await axios.post("/api/servers", values);
+			const response = await axios.post("/api/servers", values);
 
 			form.reset();
 			router.refresh();
-			window.location.reload();
+			if (response.data?.id) {
+				router.push(`/servers/${response.data.id}`);
+			}
 		} catch (error) {
 			console.log(error);
 		}
@@ -102,6 +107,37 @@ export const InitialModal = () => {
 													onChange={field.onChange}
 												/>
 											</FormControl>
+											{/* Quick preset icons */}
+											<div className="mt-3">
+												<span className="text-[11px] text-zinc-500 flex items-center justify-center gap-1 mb-2">
+													<Sparkles className="w-3 h-3 text-[#5865F2]" />
+													Or pick a ready-to-use icon:
+												</span>
+												<div className="flex flex-wrap items-center justify-center gap-2 max-w-xs">
+													{SERVER_PRESET_ICONS.map((preset) => (
+														<button
+															type="button"
+															key={preset.id}
+															onClick={() => field.onChange(preset.url)}
+															className={`relative w-10 h-10 rounded-full overflow-hidden border-2 transition ${
+																field.value === preset.url
+																	? "border-[#5865F2] ring-2 ring-[#5865F2]/40 scale-105"
+																	: "border-zinc-300 opacity-80 hover:opacity-100"
+															}`}
+															title={`${preset.label} (${preset.category})`}
+														>
+															<Image
+																src={preset.url}
+																alt={preset.label}
+																fill
+																unoptimized
+																className="object-cover"
+																referrerPolicy="no-referrer"
+															/>
+														</button>
+													))}
+												</div>
+											</div>
 										</FormItem>
 									)}
 								/>
@@ -111,7 +147,7 @@ export const InitialModal = () => {
 								name="name"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel className="uppercase text-sx font-bold text-zinc-500 dark:text-secondary/70">
+										<FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-secondary/70">
 											Server name
 										</FormLabel>
 										<FormControl>

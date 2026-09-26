@@ -231,7 +231,7 @@ export const ChatItem = ({
 				</div>
 			</div>
 			{canDeleteMessage && (
-				<div className="hidden group-hover:flex items-center gap-x-2 absolute p-1 -top-2 right-5 bg-white dark:bg-zinc-800 border rounded-sm">
+				<div className="hidden group-hover:flex items-center gap-x-2 absolute p-1 -top-2 right-4 bg-white dark:bg-[#313338] border border-zinc-200 dark:border-zinc-700/80 rounded shadow-md z-10 transition-opacity">
 					{canEditMessage && (
 						<ActionToolTip label="Edit">
 							<Edit

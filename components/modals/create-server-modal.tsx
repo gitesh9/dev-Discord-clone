@@ -4,6 +4,8 @@ import axios from "axios";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { Server, Sparkles } from "lucide-react";
+import Image from "next/image";
 
 import {
 	Dialog,
@@ -27,6 +29,7 @@ import { Button } from "@/components/ui/button";
 import { FileUpload } from "@/components/file-upload";
 import { useRouter } from "next/navigation";
 import { useModal } from "@/hooks/use-modal-store";
+import { SERVER_PRESET_ICONS } from "@/lib/server-presets";
 
 const formSchema = z.object({
 	name: z.string().min(1, {
@@ -47,7 +50,7 @@ export const CreateServerModal = () => {
 		resolver: zodResolver(formSchema),
 		defaultValues: {
 			name: "",
-			imageUrl: "",
+			imageUrl: SERVER_PRESET_ICONS[0].url,
 		},
 	});
 
@@ -72,27 +75,30 @@ export const CreateServerModal = () => {
 
 	return (
 		<Dialog open={isModalOpen} onOpenChange={handleClose}>
-			<DialogContent className="bg-white text-black p-0 overflow-hidden">
+			<DialogContent className="bg-white dark:bg-[#313338] text-zinc-900 dark:text-zinc-100 p-0 overflow-hidden border border-zinc-200 dark:border-zinc-700/80 shadow-2xl">
 				<DialogHeader className="pt-8 px-6">
+					<div className="mx-auto w-12 h-12 rounded-full bg-indigo-500/10 dark:bg-indigo-500/20 flex items-center justify-center mb-2">
+						<Server className="w-6 h-6 text-[#5865F2]" />
+					</div>
 					<DialogTitle className="text-2xl text-center font-bold">
 						Customize your server
 					</DialogTitle>
-					<DialogDescription className="text-center text-zinc-500">
-						Give your server some Personality
+					<DialogDescription className="text-center text-zinc-500 dark:text-zinc-400 text-xs">
+						Give your server a distinct name and icon. You can always change it later.
 					</DialogDescription>
 				</DialogHeader>
 				<Form {...form}>
 					<form
 						onSubmit={form.handleSubmit(onSubmit)}
-						className="space-y-8"
+						className="space-y-6"
 					>
-						<div className="space-y-8 px-6">
-							<div className="flex items-center justify-center text-center">
+						<div className="space-y-6 px-6">
+							<div className="flex flex-col items-center justify-center text-center">
 								<FormField
 									control={form.control}
 									name="imageUrl"
 									render={({ field }) => (
-										<FormItem>
+										<FormItem className="w-full flex flex-col items-center">
 											<FormControl>
 												<FileUpload
 													endpoint="serverImage"
@@ -100,6 +106,38 @@ export const CreateServerModal = () => {
 													onChange={field.onChange}
 												/>
 											</FormControl>
+											{/* Quick preset icons */}
+											<div className="mt-3">
+												<span className="text-[11px] text-zinc-500 dark:text-zinc-400 flex items-center justify-center gap-1 mb-2">
+													<Sparkles className="w-3 h-3 text-[#5865F2]" />
+													Or pick a ready-to-use icon:
+												</span>
+												<div className="flex flex-wrap items-center justify-center gap-2 max-w-xs">
+													{SERVER_PRESET_ICONS.map((preset) => (
+														<button
+															type="button"
+															key={preset.id}
+															onClick={() => field.onChange(preset.url)}
+															className={`relative w-10 h-10 rounded-full overflow-hidden border-2 transition ${
+																field.value === preset.url
+																	? "border-[#5865F2] ring-2 ring-[#5865F2]/40 scale-105"
+																	: "border-zinc-300 dark:border-zinc-700 opacity-80 hover:opacity-100"
+															}`}
+															title={`${preset.label} (${preset.category})`}
+														>
+															<Image
+																src={preset.url}
+																alt={preset.label}
+																fill
+																unoptimized
+																className="object-cover"
+																referrerPolicy="no-referrer"
+															/>
+														</button>
+													))}
+												</div>
+											</div>
+											<FormMessage />
 										</FormItem>
 									)}
 								/>
@@ -109,25 +147,34 @@ export const CreateServerModal = () => {
 								name="name"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel className="uppercase text-sx font-bold text-zinc-500 dark:text-secondary/70">
+										<FormLabel className="uppercase text-xs font-bold text-zinc-600 dark:text-zinc-300">
 											Server name
 										</FormLabel>
 										<FormControl>
 											<Input
 												disabled={isLoading}
-												className="bg-zinc-300/50 border-0 focus-visible:ring-0 text-black focus-visible:ring-offset-0"
-												placeholder="Enter server name"
+												className="bg-zinc-100 dark:bg-[#1E1F22] border-0 focus-visible:ring-2 focus-visible:ring-[#5865F2] text-zinc-800 dark:text-zinc-100 focus-visible:ring-offset-0 placeholder:text-zinc-400"
+												placeholder="e.g. Engineering Team, Tech Lounge"
 												{...field}
-											></Input>
+											/>
 										</FormControl>
 										<FormMessage />
 									</FormItem>
 								)}
 							/>
 						</div>
-						<DialogFooter className="bg-gray-100 px-6 py-4">
+						<DialogFooter className="bg-zinc-100 dark:bg-[#2B2D31] px-6 py-4 flex items-center justify-between">
+							<Button
+								type="button"
+								variant="ghost"
+								onClick={handleClose}
+								disabled={isLoading}
+								className="text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200"
+							>
+								Cancel
+							</Button>
 							<Button variant="primary" disabled={isLoading}>
-								Create
+								Create Server
 							</Button>
 						</DialogFooter>
 					</form>

@@ -3,6 +3,8 @@ import { db } from "@/lib/db";
 import { DirectMessage } from "@prisma/client";
 import { NextResponse } from "next/server";
 
+export const dynamic = "force-dynamic";
+
 const MESSAGES_BATCH = 20;
 
 export async function GET(req: Request) {
