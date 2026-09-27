@@ -19,10 +19,10 @@ export default function SignUpPage() {
 					</svg>
 				</div>
 				<h1 className="text-2xl font-bold text-white tracking-tight">
-					Create Your Account
+					Join Vertex Workspace
 				</h1>
 				<p className="text-xs text-zinc-400 max-w-sm mx-auto">
-					Register your personalized Discord profile with avatar, join channels, and start chatting.
+					Create your profile, join channels, and start collaborating in real time.
 				</p>
 			</div>
 

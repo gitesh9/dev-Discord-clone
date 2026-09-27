@@ -72,13 +72,13 @@ export const ServerSearch = ({ data }: ServerSearchProps) => {
 			<ActionToolTip label={`Quick Switcher (${isMac ? "⌘K" : "Ctrl+K"})`} side="top">
 				<button
 					onClick={() => setOpen(true)}
-					className="group px-2 py-2 rounded-md flex items-center gap-x-2 w-full hover:bg-zinc-700/10 dark:hover:bg-zinc-700/50 transition border border-transparent hover:border-zinc-300 dark:hover:border-zinc-700/50"
+					className="search-switcher group px-2.5 py-2 rounded-lg flex items-center gap-x-2 w-full transition border border-white/[0.06] bg-black/10 hover:bg-white/5 hover:border-white/10"
 				>
 					<Search className="w-4 h-4 text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-700 dark:group-hover:text-zinc-200 transition" />
-					<p className="font-semibold text-sm text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-700 dark:group-hover:text-zinc-200 transition">
+					<p className="font-medium text-[13px] text-muted-foreground group-hover:text-foreground transition">
 						Search
 					</p>
-					<kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border border-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800 px-1.5 font-mono text-[10px] font-medium text-zinc-500 dark:text-zinc-400 ml-auto shadow-xs">
+					<kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border border-white/10 bg-white/5 px-1.5 font-mono text-[9px] font-medium text-muted-foreground ml-auto">
 						<span>{isMac ? "⌘" : "ctrl+"}</span>K
 					</kbd>
 				</button>

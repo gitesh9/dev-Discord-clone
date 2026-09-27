@@ -64,7 +64,7 @@ export const ChatMessages = ({
 
 	if (status === "pending") {
 		return (
-			<div className="flex flex-col flex-1 justify-center items-center">
+			<div className="system-state flex flex-col flex-1 justify-center items-center">
 				<Loader2 className="h-7 w-7 text-zinc-500 animate-spin my-4" />
 				<p className="text-xs text-zinc-500 dark:text-zinc-400">
 					Loading Messages...
@@ -75,7 +75,7 @@ export const ChatMessages = ({
 
 	if (status === "error") {
 		return (
-			<div className="flex flex-col flex-1 justify-center items-center">
+			<div className="system-state flex flex-col flex-1 justify-center items-center">
 				<ServerCrash className="h-7 w-7 text-zinc-500 my-4" />
 				<p className="text-xs text-zinc-500 dark:text-zinc-400">
 					Something went wrong!
@@ -87,7 +87,7 @@ export const ChatMessages = ({
 	return (
 		<div
 			ref={chatRef}
-			className="flex-1 flex flex-col py-4 overflow-y-auto"
+			className="message-stream flex-1 flex flex-col py-4 overflow-y-auto"
 		>
 			{!hasNextPage && <div className="flex-1" />}
 			{!hasNextPage && <ChatWelcome type={type} name={name} />}
@@ -98,7 +98,7 @@ export const ChatMessages = ({
 					) : (
 						<button
 							onClick={() => fetchNextPage()}
-							className="text-zinc-500 hover:text-zinc-600 dark:text-zinc-400 text-xs my-4 dark:hover:text-zinc-300 transition"
+							className="load-previous text-muted-foreground hover:text-foreground text-xs my-4 transition"
 						>
 							Load Previous messages
 						</button>

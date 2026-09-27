@@ -19,7 +19,7 @@ export default function SignInPage() {
 					</svg>
 				</div>
 				<h1 className="text-2xl font-bold text-white tracking-tight">
-					Discord Portfolio Demo
+					Vertex Workspace
 				</h1>
 				<p className="text-xs text-zinc-400 max-w-sm mx-auto">
 					Full-stack real-time communication platform with text channels, WebRTC audio/video, and role-based access.

@@ -90,12 +90,12 @@ export const ResizableServerLayout = ({
 	return (
 		<div
 			style={{ ["--sidebar-width" as any]: `${width}px` }}
-			className="h-full relative overflow-hidden"
+			className="workspace-stage h-full relative overflow-hidden"
 		>
 			{/* Resizable Server Sidebar (Desktop) */}
 			<aside
 				style={{ width: `${width}px` }}
-				className={`hidden md:flex h-full z-20 flex-col fixed inset-y-0 left-[72px] transition-[width] ${
+				className={`channel-shell hidden md:flex h-[calc(100%-24px)] z-20 flex-col fixed top-3 bottom-3 left-[72px] transition-[width] overflow-hidden rounded-xl border border-border/80 ${
 					isResizing ? "duration-0" : "duration-75 ease-out"
 				}`}
 				aria-label="Server Channels and Navigation"
@@ -110,8 +110,8 @@ export const ResizableServerLayout = ({
 					title="Drag to resize sidebar · Double-click to reset"
 					className={`absolute top-0 right-0 w-2 h-full cursor-col-resize z-30 transition-colors flex items-center justify-center group ${
 						isResizing
-							? "bg-[#5865F2]"
-							: "hover:bg-[#5865F2]/60 active:bg-[#5865F2]"
+							? "bg-primary"
+							: "hover:bg-primary/60 active:bg-primary"
 					}`}
 				>
 					<div
@@ -126,7 +126,7 @@ export const ResizableServerLayout = ({
 
 			{/* Main Content Area */}
 			<main
-				className={`h-full md:pl-[var(--sidebar-width)] transition-[padding] ${
+				className={`workspace-main h-full md:pl-[var(--sidebar-width)] transition-[padding] ${
 					isResizing ? "duration-0" : "duration-75 ease-out"
 				}`}
 			>

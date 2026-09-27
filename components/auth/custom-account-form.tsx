@@ -88,7 +88,7 @@ export const CustomAccountForm = ({ mode = "register" }: CustomAccountFormProps)
 					</div>
 					<div>
 						<h2 className="text-sm font-semibold text-white">
-							{mode === "register" ? "Create New Discord Profile" : "Quick Custom Login"}
+							{mode === "register" ? "Create Workspace Profile" : "Quick Custom Login"}
 						</h2>
 						<p className="text-[11px] text-zinc-400">
 							Instant account creation with full server access

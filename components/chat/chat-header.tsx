@@ -19,7 +19,7 @@ export const ChatHeader = ({
 	imageUrl,
 }: ChatHeaderProps) => {
 	return (
-		<div className="text-md font-semibold px-3 flex items-center h-12 border-neutral-200 dark:border-neutral-800 border-b-2 bg-white dark:bg-[#313338]">
+		<div className="chat-heading px-4 flex items-center h-14 border-b border-white/[0.06]">
 			<MobileToggle serverId={serverId} />
 			{type === "channel" && (
 				<Hash className="w-5 h-5 text-zinc-500 dark:text-zinc-400 mr-2" />
@@ -30,10 +30,10 @@ export const ChatHeader = ({
 					className="h-8 w-8 md:h-8 md:w-8 mr-2"
 				/>
 			)}
-			<p className="font-semibold text-md text-black dark:text-white">
+			<p className="font-display font-semibold text-[15px] text-foreground">
 				{name}
 			</p>
-			<div className="ml-auto flex items-center gap-x-2">
+			<div className="ml-auto flex items-center gap-x-2 header-tools">
 				{type === "conversation" && <ChatVideoButton />}
 				<SocketIndicator />
 			</div>

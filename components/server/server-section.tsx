@@ -23,8 +23,8 @@ export const ServerSection = ({
 }: ServerSectionProps) => {
 	const { onOpen } = useModal();
 	return (
-		<div className="flex items-center justify-between py-2">
-			<p className="text-xs uppercase font-semibold text-zinc-500 dark:text-zinc-400">
+		<div className="section-title flex items-center justify-between pt-3 pb-1.5 px-1">
+			<p className="text-[10px] uppercase font-bold tracking-[0.12em] text-muted-foreground/70">
 				{label}
 			</p>
 			{role !== MemberRole.GUEST && sectionType === "channels" && (

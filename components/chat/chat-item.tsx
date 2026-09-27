@@ -122,8 +122,8 @@ export const ChatItem = ({
 	const isImage = !isPDF && fileUrl;
 
 	return (
-		<div className="relative group flex items-center hover:bg-black/5 p-4 transition w-full">
-			<div className="group flex gap-x-2 items-start w-full">
+		<div className="chat-message relative group flex items-start hover:bg-white/[0.025] px-5 py-2.5 transition w-full">
+			<div className="group flex gap-x-3 items-start w-full">
 				<div
 					onClick={onMemberClick}
 					className="cursor-pointer hover:drop-shadow-md transition"
@@ -135,7 +135,7 @@ export const ChatItem = ({
 						<div className="flex items-center">
 							<p
 								onClick={onMemberClick}
-								className="font-semibold text-sm hover:underline cursor-pointer"
+								className="font-display font-semibold text-[13px] hover:underline cursor-pointer text-foreground"
 							>
 								{member.profile.name}
 							</p>
@@ -143,7 +143,7 @@ export const ChatItem = ({
 								{roleIconMap[member.role]}
 							</ActionToolTip>
 						</div>
-						<span className="text-xs text-zinc-500 dark:text-zinc-400">
+						<span className="text-[10px] text-muted-foreground/70">
 							{timestamp}
 						</span>
 					</div>
@@ -178,7 +178,7 @@ export const ChatItem = ({
 					{!fileUrl && !isEditing && (
 						<p
 							className={cn(
-								"text-sm text-zinc-600 dark:text-zinc-300",
+								"text-[13px] leading-relaxed text-foreground/80 max-w-[72ch]",
 								deleted &&
 									"italic text-zinc-500 dark:text-zinc-400 text-xs mt-1"
 							)}
@@ -231,7 +231,7 @@ export const ChatItem = ({
 				</div>
 			</div>
 			{canDeleteMessage && (
-				<div className="hidden group-hover:flex items-center gap-x-2 absolute p-1 -top-2 right-4 bg-white dark:bg-[#313338] border border-zinc-200 dark:border-zinc-700/80 rounded shadow-md z-10 transition-opacity">
+				<div className="message-actions hidden group-hover:flex items-center gap-x-1 absolute p-1 -top-2 right-4 bg-card border border-white/10 rounded-lg shadow-xl z-10 transition-opacity">
 					{canEditMessage && (
 						<ActionToolTip label="Edit">
 							<Edit

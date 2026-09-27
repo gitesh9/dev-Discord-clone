@@ -66,7 +66,7 @@ export const ServerUserFooter = ({ profile, role }: ServerUserFooterProps) => {
 	return (
 		<div
 			data-tour="user-footer"
-			className="bg-[#232428] px-2.5 py-2 flex items-center gap-x-2 border-t border-zinc-300/40 dark:border-zinc-800/80 mt-auto"
+			className="server-user-footer px-2.5 py-2.5 flex items-center gap-x-2 border-t border-white/[0.06] mt-auto"
 		>
 			{/* User Avatar + Status */}
 			<div className="relative group cursor-pointer">

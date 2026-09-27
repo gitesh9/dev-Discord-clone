@@ -108,9 +108,9 @@ export const MediaRoom = ({ chatId, video, audio }: MediaRoomProps) => {
 	}
 
 	return (
-		<div className="flex flex-col flex-1 h-full overflow-hidden bg-[#1E1F22]">
+		<div className="media-room flex flex-col flex-1 h-full overflow-hidden bg-background">
 			{/* Top WebRTC status strip */}
-			<div className="px-4 py-2 bg-[#2B2D31]/80 border-b border-zinc-800 flex items-center justify-between text-xs text-zinc-400">
+			<div className="px-4 py-2.5 bg-white/[0.025] border-b border-white/[0.06] flex items-center justify-between text-xs text-muted-foreground backdrop-blur-xl">
 				<div className="flex items-center gap-2">
 					<span className="relative flex h-2 w-2">
 						<span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>

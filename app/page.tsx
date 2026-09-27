@@ -45,7 +45,7 @@ export default async function LandingPage() {
 	}
 
 	return (
-		<div className="min-h-screen bg-[#0F1012] text-zinc-100 flex flex-col selection:bg-[#5865F2] selection:text-white antialiased">
+		<div className="landing-page min-h-screen bg-background text-foreground flex flex-col selection:bg-primary selection:text-primary-foreground antialiased">
 			{/* Top Navigation Bar */}
 			<header className="sticky top-0 z-50 w-full backdrop-blur-md bg-[#0F1012]/90 border-b border-zinc-800/80">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
@@ -66,7 +66,7 @@ export default async function LandingPage() {
 						</div>
 						<div className="flex flex-col">
 							<span className="font-bold text-base sm:text-lg tracking-tight text-white leading-none">
-								Discord <span className="text-[#5865F2]">Pro</span>
+								Vertex <span className="text-[#5865F2]">Workspace</span>
 							</span>
 							<span className="text-[11px] text-zinc-400 mt-1 hidden xs:inline">
 								Real-Time Architecture Showcase
@@ -132,29 +132,35 @@ export default async function LandingPage() {
 			</header>
 
 			{/* Hero Section */}
-			<section className="relative overflow-hidden pt-10 pb-16 sm:pt-16 sm:pb-24">
+			<section className="landing-hero relative overflow-hidden pt-12 pb-16 sm:pt-20 sm:pb-24">
 				<div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
 					{/* Editorial Metadata (Zero Pill Discipline) */}
-					<div className="flex items-center justify-center gap-2 text-xs text-zinc-400 mb-5 font-mono">
+					<div className="flex flex-wrap items-center justify-center gap-2 text-[11px] text-zinc-300 mb-6 font-mono uppercase tracking-wider">
+						<span className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_12px_currentColor]" />System online</span>
+						<span aria-hidden="true">·</span>
 						<span>Next.js App Router</span>
 						<span aria-hidden="true">·</span>
-						<span>Socket.io WebSockets</span>
-						<span aria-hidden="true">·</span>
-						<span>LiveKit WebRTC SFU</span>
+						<span>Real-time command center</span>
 					</div>
 
 					{/* Headline */}
-					<h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
-						Real-Time Community &{" "}
+					<h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.06] max-w-4xl mx-auto">
+						Your team, synchronized in a{" "}
 						<span className="text-transparent bg-clip-text bg-gradient-to-r from-[#5865F2] via-indigo-400 to-sky-400">
-							Team Communication
+							real-time command center
 						</span>
 					</h1>
 
 					{/* Subtitle */}
 					<p className="mt-4 sm:mt-5 text-sm sm:text-base lg:text-lg text-zinc-400 max-w-2xl mx-auto leading-relaxed">
-						A full-stack Discord reproduction engineered with bidirectional WebSocket messaging, multi-user WebRTC audio & video lounges, role-based authorization, and instant member direct messages.
+						A production-grade communication workspace combining instant messaging, focused channels, role-aware collaboration, and live audio and video rooms.
 					</p>
+
+					<div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[11px] font-mono uppercase text-zinc-400">
+						<span><strong className="text-zinc-100">WebSocket</strong> messaging</span>
+						<span><strong className="text-zinc-100">WebRTC</strong> rooms</span>
+						<span><strong className="text-zinc-100">RBAC</strong> permissions</span>
+					</div>
 
 					{/* 1-Click Guest Sign-In Hero Card */}
 					<div
@@ -207,7 +213,7 @@ export default async function LandingPage() {
 
 			{/* Responsive UI Mockup Preview (Adaptive for Mobile & Desktop) */}
 			<section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-				<div className="rounded-xl sm:rounded-2xl border border-zinc-800/90 bg-[#1E1F22] shadow-2xl overflow-hidden">
+				<div className="landing-command-preview rounded-xl sm:rounded-2xl border border-zinc-700/90 bg-[#1E1F22] shadow-2xl overflow-hidden">
 					{/* Window Top Bar */}
 					<div className="bg-[#2B2D31] px-3.5 sm:px-4 py-2.5 sm:py-3 flex items-center justify-between border-b border-zinc-800 text-xs">
 						<div className="flex items-center gap-2">
@@ -356,7 +362,7 @@ export default async function LandingPage() {
 
 					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
 						{/* Feature 1 */}
-						<div className="p-5 sm:p-6 rounded-xl bg-[#18191C] border border-zinc-800 space-y-2.5">
+						<div className="landing-feature p-5 sm:p-6 rounded-lg bg-[#18191C] border border-zinc-800 space-y-2.5">
 							<div className="w-9 h-9 rounded-lg bg-[#5865F2]/20 text-[#5865F2] flex items-center justify-center">
 								<Radio className="w-4 h-4 sm:w-5 sm:h-5" />
 							</div>
@@ -369,7 +375,7 @@ export default async function LandingPage() {
 						</div>
 
 						{/* Feature 2 */}
-						<div className="p-5 sm:p-6 rounded-xl bg-[#18191C] border border-zinc-800 space-y-2.5">
+						<div className="landing-feature p-5 sm:p-6 rounded-lg bg-[#18191C] border border-zinc-800 space-y-2.5">
 							<div className="w-9 h-9 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
 								<Video className="w-4 h-4 sm:w-5 sm:h-5" />
 							</div>
@@ -382,7 +388,7 @@ export default async function LandingPage() {
 						</div>
 
 						{/* Feature 3 */}
-						<div className="p-5 sm:p-6 rounded-xl bg-[#18191C] border border-zinc-800 space-y-2.5">
+						<div className="landing-feature p-5 sm:p-6 rounded-lg bg-[#18191C] border border-zinc-800 space-y-2.5">
 							<div className="w-9 h-9 rounded-lg bg-rose-500/20 text-rose-400 flex items-center justify-center">
 								<ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5" />
 							</div>
@@ -395,7 +401,7 @@ export default async function LandingPage() {
 						</div>
 
 						{/* Feature 4 */}
-						<div className="p-5 sm:p-6 rounded-xl bg-[#18191C] border border-zinc-800 space-y-2.5">
+						<div className="landing-feature p-5 sm:p-6 rounded-lg bg-[#18191C] border border-zinc-800 space-y-2.5">
 							<div className="w-9 h-9 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center">
 								<MessageSquare className="w-4 h-4 sm:w-5 sm:h-5" />
 							</div>
@@ -408,7 +414,7 @@ export default async function LandingPage() {
 						</div>
 
 						{/* Feature 5 */}
-						<div className="p-5 sm:p-6 rounded-xl bg-[#18191C] border border-zinc-800 space-y-2.5">
+						<div className="landing-feature p-5 sm:p-6 rounded-lg bg-[#18191C] border border-zinc-800 space-y-2.5">
 							<div className="w-9 h-9 rounded-lg bg-sky-500/20 text-sky-400 flex items-center justify-center">
 								<Compass className="w-4 h-4 sm:w-5 sm:h-5" />
 							</div>
@@ -421,7 +427,7 @@ export default async function LandingPage() {
 						</div>
 
 						{/* Feature 6 */}
-						<div className="p-5 sm:p-6 rounded-xl bg-[#18191C] border border-zinc-800 space-y-2.5">
+						<div className="landing-feature p-5 sm:p-6 rounded-lg bg-[#18191C] border border-zinc-800 space-y-2.5">
 							<div className="w-9 h-9 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center">
 								<Layers className="w-4 h-4 sm:w-5 sm:h-5" />
 							</div>
@@ -429,7 +435,7 @@ export default async function LandingPage() {
 								Infinite Scroll & Media
 							</h3>
 							<p className="text-xs text-zinc-400 leading-relaxed">
-								TanStack Query cursor pagination for message histories and UploadThing cloud storage integration for PDF and image attachments.
+								Cursor-based pagination for message histories and UploadThing cloud storage integration for PDF and image attachments.
 							</p>
 						</div>
 					</div>

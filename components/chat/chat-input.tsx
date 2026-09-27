@@ -60,7 +60,7 @@ export const ChatInput = ({ apiUrl, query, name, type }: ChatInputProps) => {
 	};
 
 	return (
-		<div data-tour="chat-input" className="relative px-4 pb-4">
+		<div data-tour="chat-input" className="chat-composer relative px-4 pb-4">
 			<Form {...form}>
 				<form onSubmit={form.handleSubmit(onSubmit)}>
 					<FormField
@@ -69,7 +69,7 @@ export const ChatInput = ({ apiUrl, query, name, type }: ChatInputProps) => {
 						render={({ field }) => (
 							<FormItem>
 								<FormControl>
-									<div className="relative">
+									<div className="composer-surface relative">
 										<ActionToolTip label="Attach images, PDFs, or files (UploadThing)" side="top">
 											<button
 												type="button"
@@ -80,7 +80,7 @@ export const ChatInput = ({ apiUrl, query, name, type }: ChatInputProps) => {
 													})
 												}
 												aria-label="Attach file"
-												className="absolute top-3 left-4 h-7 w-7 bg-zinc-400 dark:bg-zinc-500 hover:bg-zinc-500 dark:hover:bg-zinc-400 transition rounded-full p-1 flex items-center justify-center text-white dark:text-[#1E1F22] z-10 shadow-xs"
+												className="absolute top-3 left-3 h-8 w-8 bg-white/5 hover:bg-primary/15 hover:text-primary transition rounded-lg p-1 flex items-center justify-center text-muted-foreground z-10 border border-white/[0.06]"
 											>
 												<Plus className="h-4 w-4" />
 											</button>
@@ -88,7 +88,7 @@ export const ChatInput = ({ apiUrl, query, name, type }: ChatInputProps) => {
 
 										<Input
 											disabled={isLoading}
-											className="pl-14 pr-24 py-6 bg-zinc-100 dark:bg-[#383A40] border-none focus-visible:ring-2 focus-visible:ring-[#5865F2]/50 focus-visible:ring-offset-0 text-zinc-800 dark:text-zinc-100 text-sm rounded-lg transition placeholder:text-zinc-400 dark:placeholder:text-zinc-500"
+											className="h-14 pl-14 pr-16 bg-white/[0.025] border border-white/[0.065] focus-visible:ring-2 focus-visible:ring-primary/20 focus-visible:border-primary/50 focus-visible:ring-offset-0 text-foreground text-[13px] rounded-xl transition placeholder:text-muted-foreground/60"
 											placeholder={`Message ${
 												type === "conversation"
 													? name
@@ -115,7 +115,7 @@ export const ChatInput = ({ apiUrl, query, name, type }: ChatInputProps) => {
 			</Form>
 
 			{/* Subtle Recruiter helper footer */}
-			<div className="flex items-center justify-between text-[11px] text-zinc-400 dark:text-zinc-500 px-1 pt-1.5">
+			<div className="composer-helper flex items-center justify-between text-[10px] text-muted-foreground/60 px-1 pt-1.5">
 				<div className="flex items-center gap-1">
 					<span className="font-mono bg-zinc-200 dark:bg-zinc-700/60 px-1 py-0.5 rounded text-[10px] text-zinc-600 dark:text-zinc-400">Return</span>
 					<span>to send</span>

@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import { Open_Sans } from "next/font/google";
+import { DM_Sans, Sora } from "next/font/google";
 
 import "./globals.css";
-import "@uploadthing/react/styles.css";
 
 import { cn } from "@/lib/utils";
 import { ClerkProvider } from "@clerk/nextjs";
@@ -11,14 +10,15 @@ import { ModalProvider } from "@/components/providers/modal-provider";
 import { SocketProvider } from "@/components/providers/socket-provider";
 import { QueryProvider } from "@/components/providers/query-provider";
 
-const inter = Open_Sans({ subsets: ["latin"] });
+const bodyFont = DM_Sans({ subsets: ["latin"], variable: "--font-body" });
+const displayFont = Sora({ subsets: ["latin"], variable: "--font-display" });
 
 export const metadata: Metadata = {
-	title: "Discord Clone",
-	description: "Full-stack Discord clone featuring servers, channels, direct messaging, and voice/video calling.",
+	title: "Vertex — Real-time Team Workspace",
+	description: "A polished real-time workspace with channels, direct messages, and voice and video rooms.",
 	openGraph: {
-		title: "Discord Clone",
-		description: "Full-stack Discord clone featuring servers, channels, direct messaging, and voice/video calling.",
+		title: "Vertex — Real-time Team Workspace",
+		description: "A polished real-time workspace with channels, direct messages, and voice and video rooms.",
 	},
 };
 
@@ -36,8 +36,9 @@ export default function RootLayout({
 			<head />
 			<body
 				className={cn(
-					inter.className,
-					"bg-[#313338] text-zinc-100 antialiased"
+					bodyFont.variable,
+					displayFont.variable,
+					"app-body bg-background text-foreground antialiased"
 				)}
 			>
 				<ClerkProvider
